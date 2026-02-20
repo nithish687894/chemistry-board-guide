@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Chemistry PYQ Master — Puducherry CBSE Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a28;
+  --surface3: #222236;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --accent3: #fd79a8;
+  --green: #00b894;
+  --gold: #fdcb6e;
+  --orange: #e17055;
+  --cyan: #00cec9;
+  --text: #e8e8f0;
+  --text2: #a0a0b8;
+  --text3: #6c6c88;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --glow: 0 0 40px rgba(108,92,231,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* === HERO === */
+.hero {
+  position: relative;
+  padding: 60px 20px 40px;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(108,92,231,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(253,121,168,0.06) 0%, transparent 50%);
+  animation: heroFloat 15s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  33% { transform: translate(2%,-1%) rotate(1deg); }
+  66% { transform: translate(-1%,2%) rotate(-1deg); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(108,92,231,0.15);
+  border: 1px solid rgba(108,92,231,0.3);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent2);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  position: relative;
+  z-index: 1;
+  margin: 16px 0 12px;
+  background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.15;
+}
+
+.hero p {
+  font-size: 15px;
+  color: var(--text2);
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .num {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent2);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hero-stat .label {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* === NAV TABS === */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(108,92,231,0.15);
+  padding: 0 12px;
+}
+
+.nav {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 8px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.nav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.nav-btn.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(108,92,231,0.4);
+}
+
+.nav-btn:not(.active):hover { color: var(--text); background: var(--surface2); }
+
+/* === SECTIONS === */
+.section {
+  display: none;
+  padding: 20px 16px 100px;
+  max-width: 820px;
+  margin: 0 auto;
+  animation: fadeUp 0.4s ease;
+}
+.section.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-sub {
+  color: var(--text2);
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* === CARDS === */
+.card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+}
+.card:hover { border-color: rgba(108,92,231,0.2); box-shadow: var(--glow); }
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.tag-green { background: rgba(0,184,148,0.15); color: var(--green); }
+.tag-gold { background: rgba(253,203,110,0.15); color: var(--gold); }
+.tag-orange { background: rgba(225,112,85,0.15); color: var(--orange); }
+.tag-purple { background: rgba(108,92,231,0.15); color: var(--accent2); }
+.tag-cyan { background: rgba(0,206,201,0.15); color: var(--cyan); }
+.tag-pink { background: rgba(253,121,168,0.15); color: var(--accent3); }
+
+/* === PROGRESS BARS === */
+.prog-wrap { margin: 8px 0; }
+.prog-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--text2);
+}
+.prog-bar {
+  height: 8px;
+  background: var(--surface3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+}
+
+/* === FORMULA BOX === */
+.formula-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  margin: 10px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-x: auto;
+  color: var(--accent2);
+}
+
+/* === ACCORDION === */
+.accordion { margin-bottom: 12px; }
+.acc-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+  gap: 10px;
+}
+.acc-trigger:hover { border-color: rgba(108,92,231,0.3); }
+.acc-trigger .arrow {
+  font-size: 18px;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  color: var(--text3);
+}
+.accordion.open .acc-trigger { border-color: var(--accent); background: var(--surface2); border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+.accordion.open .acc-trigger .arrow { transform: rotate(180deg); color: var(--accent2); }
+.acc-body {
+  display: none;
+  padding: 16px 18px;
+  background: var(--surface2);
+  border: 1px solid rgba(108,92,231,0.15);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text2);
+}
+.accordion.open .acc-body { display: block; animation: fadeUp 0.3s ease; }
+
+/* === QUIZ === */
+.quiz-q {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.quiz-q h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.quiz-q h4 span { color: var(--accent2); font-family: 'JetBrains Mono', monospace; margin-right: 8px; }
+.q-options { display: flex; flex-direction: column; gap: 8px; }
+.q-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+  transition: all 0.25s;
+  color: var(--text2);
+}
+.q-opt:hover { border-color: rgba(108,92,231,0.3); color: var(--text); }
+.q-opt.selected { border-color: var(--accent); background: rgba(108,92,231,0.1); color: var(--text); }
+.q-opt.correct { border-color: var(--green); background: rgba(0,184,148,0.1); color: var(--green); }
+.q-opt.wrong { border-color: var(--orange); background: rgba(225,112,85,0.1); color: var(--orange); }
+.q-opt .circle {
+  width: 20px; height: 20px;
+  border: 2px solid var(--text3);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 1px;
+  transition: all 0.25s;
+}
+.q-opt.selected .circle { border-color: var(--accent); background: var(--accent); color: #fff; }
+.q-opt.correct .circle { border-color: var(--green); background: var(--green); color: #fff; }
+.q-opt.wrong .circle { border-color: var(--orange); background: var(--orange); color: #fff; }
+
+.q-explain {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(0,184,148,0.08);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--green);
+  border-left: 3px solid var(--green);
+}
+.q-explain.show { display: block; animation: fadeUp 0.3s ease; }
+
+/* === STRATEGY TIMELINE === */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent3), var(--green));
+  border-radius: 1px;
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 24px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; top: 6px;
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+}
+.tl-item:nth-child(2)::before { background: var(--accent3); }
+.tl-item:nth-child(3)::before { background: var(--gold); }
+.tl-item:nth-child(4)::before { background: var(--green); }
+.tl-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.tl-item p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* === GRID LAYOUT === */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.mini-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.mini-card:hover { border-color: rgba(108,92,231,0.2); transform: translateY(-2px); }
+.mini-card .icon { font-size: 28px; margin-bottom: 8px; }
+.mini-card h5 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.mini-card p { font-size: 12px; color: var(--text3); }
+
+/* === SCORE COUNTER === */
+.score-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,15,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(108,92,231,0.15);
+  padding: 12px 20px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+}
+.score-bar.visible { display: flex; }
+.score-text { font-size: 14px; font-weight: 600; }
+.score-num { color: var(--green); font-family: 'JetBrains Mono', monospace; }
+.score-btn {
+  padding: 8px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* === CHECKLIST === */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.check-item:last-child { border: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--text3);
+  border-radius: 6px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-top: 1px;
+}
+.check-box.checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+.check-box.checked::after { content: '✓'; color: #fff; font-size: 14px; font-weight: 700; }
+.check-item.done .check-text { text-decoration: line-through; color: var(--text3); }
+
+/* === CHAPTER CARDS === */
+.ch-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+}
+.ch-card:hover { border-color: rgba(108,92,231,0.2); }
+.ch-left { flex: 1; }
+.ch-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.ch-marks { font-size: 12px; color: var(--text3); }
+.ch-right { text-align: right; }
+.ch-weight {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent2);
+}
+.ch-pct { font-size: 11px; color: var(--text3); }
+
+/* === TIP BOX === */
+.tip-box {
+  background: linear-gradient(135deg, rgba(108,92,231,0.08), rgba(253,121,168,0.05));
+  border: 1px solid rgba(108,92,231,0.2);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 16px 0;
+}
+.tip-box h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tip-box p, .tip-box li {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.tip-box ul { padding-left: 18px; }
+.tip-box li { margin-bottom: 4px; }
+
+/* === TAB FILTER === */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.filter-row::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--surface);
+  color: var(--text3);
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* === REACTION BOX === */
+.rxn-box {
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin: 10px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 2;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.rxn-box .arrow { color: var(--accent3); }
+.rxn-box .reagent { color: var(--gold); font-size: 11px; }
+.rxn-box .compound { color: var(--cyan); }
+
+/* === TABLE === */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+.data-table th {
+  background: var(--surface2);
+  color: var(--accent2);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text2);
+}
+.data-table tr:hover td { color: var(--text); background: rgba(108,92,231,0.04); }
+
+.highlight { color: var(--accent2); font-weight: 600; }
+.green { color: var(--green); }
+.gold { color: var(--gold); }
+.pink { color: var(--accent3); }
+
+/* === FLOATING PROGRESS === */
+.float-progress {
+  position: fixed;
+  bottom: 70px;
+  right: 16px;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(108,92,231,0.5);
+  z-index: 98;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .hero { padding: 40px 16px 30px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero-stats { gap: 16px; }
+  .hero-stat .num { font-size: 22px; }
+  .card { padding: 16px; }
+  .section { padding: 16px 12px 100px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🧪 PUDUCHERRY CBSE REGION</div>
+  <h1>Chemistry Board Exam<br>Mastery Guide</h1>
+  <p>Your complete PYQ analysis, formulas, strategies & practice — all in one place for scoring 70/70</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">4</div><div class="label">Years PYQ</div></div>
+    <div class="hero-stat"><div class="num">33</div><div class="label">Questions/Paper</div></div>
+    <div class="hero-stat"><div class="num">70</div><div class="label">Max Marks</div></div>
+    <div class="hero-stat"><div class="num">15</div><div class="label">Chapters</div></div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-wrap">
+  <div class="nav">
+    <button class="nav-btn active" onclick="showSection('strategy')">🎯 Strategy</button>
+    <button class="nav-btn" onclick="showSection('weightage')">📊 Weightage</button>
+    <button class="nav-btn" onclick="showSection('formulas')">⚡ Formulas</button>
+    <button class="nav-btn" onclick="showSection('reactions')">🔬 Reactions</button>
+    <button class="nav-btn" onclick="showSection('practice')">✏️ Practice</button>
+    <button class="nav-btn" onclick="showSection('pyq')">📄 PYQ Analysis</button>
+    <button class="nav-btn" onclick="showSection('checklist')">✅ Checklist</button>
+  </div>
+</div>
+
+<!-- ===== SECTION: STRATEGY ===== -->
+<div class="section active" id="strategy">
+  <div class="section-title">🎯 Full Marks Strategy</div>
+  <div class="section-sub">A battle-tested game plan for scoring 70/70 in CBSE Chemistry board exam</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px;">📋 Paper Pattern — Outside Delhi (Puducherry)</div>
+    <table class="data-table">
+      <tr><th>Section</th><th>Q.Nos</th><th>Type</th><th>Marks</th></tr>
+      <tr><td><span class="highlight">A</span></td><td>1–16</td><td>MCQ (1 mark each)</td><td class="green">16</td></tr>
+      <tr><td><span class="highlight">B</span></td><td>17–21</td><td>Very Short Answer (2 marks)</td><td class="green">10</td></tr>
+      <tr><td><span class="highlight">C</span></td><td>22–28</td><td>Short Answer (3 marks)</td><td class="green">21</td></tr>
+      <tr><td><span class="highlight">D</span></td><td>29–30</td><td>Case-Based (4 marks)</td><td class="green">8</td></tr>
+      <tr><td><span class="highlight">E</span></td><td>31–33</td><td>Long Answer (5 marks)</td><td class="green">15</td></tr>
+      <tr><td colspan="3" style="font-weight:700;color:var(--text);">Total</td><td style="font-weight:700;color:var(--gold);">70</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px;">⏱️ Time Management Blueprint (3 Hours = 180 min)</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>First 20 min → Section A (MCQs)</h4>
+        <p>Attempt all 16 MCQs. Mark doubtful ones and move on. Don't spend more than 1.5 min per MCQ. <strong style="color:var(--gold);">Target: 16/16</strong></p>
+      </div>
+      <div class="tl-item">
+        <h4>Next 20 min → Section B (2 markers)</h4>
+        <p>Quick & precise answers. Write 2-3 lines max. Equations + one-line explanation. <strong style="color:var(--gold);">Target: 10/10</strong></p>
+      </div>
+      <div class="tl-item">
+        <h4>Next 55 min → Section C (3 markers)</h4>
+        <p>This is where marks are won or lost. Show calculations clearly, write balanced equations, draw diagrams where needed. ~8 min per question. <strong style="color:var(--gold);">Target: 21/21</strong></p>
+      </div>
+      <div class="tl-item">
+        <h4>Next 25 min → Section D (Case-based)</h4>
+        <p>Read the passage carefully. Most sub-questions are direct. Don't overthink. <strong style="color:var(--gold);">Target: 8/8</strong></p>
+      </div>
+      <div class="tl-item">
+        <h4>Next 45 min → Section E (5 markers)</h4>
+        <p>15 min each. Write structured answers: definitions, equations, derivations, diagrams. Use internal choices wisely. <strong style="color:var(--gold);">Target: 15/15</strong></p>
+      </div>
+      <div class="tl-item">
+        <h4>Last 15 min → Revision</h4>
+        <p>Recheck MCQs, verify balancing of equations, check numerical answers, ensure you haven't skipped any question.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <h4>💡 Golden Rules for 70/70</h4>
+    <ul>
+      <li><strong>NCERT is GOD</strong> — 85-90% questions come directly from NCERT. Read every line, example, and in-text question.</li>
+      <li><strong>Write equations everywhere</strong> — Every chemical equation = marks. Balance them properly.</li>
+      <li><strong>Name reactions</strong> — Learn all name reactions from Organic Chemistry with reagents & conditions.</li>
+      <li><strong>Numericals</strong> — Practice Electrochemistry, Chemical Kinetics & Solutions numericals daily. Show every step.</li>
+      <li><strong>Diagrams</strong> — Draw labeled diagrams for electrochemical cells, crystal structures. They fetch easy marks.</li>
+      <li><strong>Use internal choice wisely</strong> — Read BOTH options before choosing. Pick the one you're 100% sure about.</li>
+      <li><strong>Neatness matters</strong> — Underline key terms, circle final answers, write legibly.</li>
+    </ul>
+  </div>
+
+  <div class="grid-2">
+    <div class="mini-card"><div class="icon">📖</div><h5>NCERT Only</h5><p>90% of questions straight from textbook</p></div>
+    <div class="mini-card"><div class="icon">✍️</div><h5>Write Equations</h5><p>Every equation = guaranteed marks</p></div>
+    <div class="mini-card"><div class="icon">🧮</div><h5>Show All Steps</h5><p>Partial marking = partial marks earned</p></div>
+    <div class="mini-card"><div class="icon">🎨</div><h5>Draw Diagrams</h5><p>Labeled diagrams = bonus impression</p></div>
+  </div>
+</div>
+
+<!-- ===== SECTION: WEIGHTAGE ===== -->
+<div class="section" id="weightage">
+  <div class="section-title">📊 Chapter-wise Weightage</div>
+  <div class="section-sub">Based on analysis of 2022–2025 Puducherry region papers. Focus your energy on high-weightage chapters.</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px;">🏆 High Priority (30+ marks combined)</div>
+    <div class="ch-card" style="border-left:3px solid var(--green);">
+      <div class="ch-left"><div class="ch-name">Electrochemistry</div><div class="ch-marks">Numericals + Theory • Every year 5-mark Q</div></div>
+      <div class="ch-right"><div class="ch-weight">8-9</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--green);">
+      <div class="ch-left"><div class="ch-name">Chemical Kinetics</div><div class="ch-marks">Integrated rate law, Arrhenius equation</div></div>
+      <div class="ch-right"><div class="ch-weight">7-8</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--green);">
+      <div class="ch-left"><div class="ch-name">Coordination Compounds</div><div class="ch-marks">IUPAC, VBT, CFT, Isomerism</div></div>
+      <div class="ch-right"><div class="ch-weight">6-7</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--green);">
+      <div class="ch-left"><div class="ch-name">Aldehydes, Ketones & Carboxylic Acids</div><div class="ch-marks">Name reactions, conversions</div></div>
+      <div class="ch-right"><div class="ch-weight">6-7</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--green);">
+      <div class="ch-left"><div class="ch-name">Haloalkanes & Haloarenes</div><div class="ch-marks">SN1/SN2, reactions, conversions</div></div>
+      <div class="ch-right"><div class="ch-weight">5-6</div><div class="ch-pct">marks</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px;">⚡ Medium Priority (15-20 marks)</div>
+    <div class="ch-card" style="border-left:3px solid var(--gold);">
+      <div class="ch-left"><div class="ch-name">Solutions</div><div class="ch-marks">Colligative properties, Raoult's law</div></div>
+      <div class="ch-right"><div class="ch-weight">5-6</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--gold);">
+      <div class="ch-left"><div class="ch-name">d & f Block Elements</div><div class="ch-marks">Properties, oxidation states, compounds</div></div>
+      <div class="ch-right"><div class="ch-weight">4-5</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--gold);">
+      <div class="ch-left"><div class="ch-name">Amines</div><div class="ch-marks">Basicity, reactions, diazonium salts</div></div>
+      <div class="ch-right"><div class="ch-weight">4-5</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--gold);">
+      <div class="ch-left"><div class="ch-name">Alcohols, Phenols & Ethers</div><div class="ch-marks">Williamson synthesis, reactions</div></div>
+      <div class="ch-right"><div class="ch-weight">3-5</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--gold);">
+      <div class="ch-left"><div class="ch-name">p-Block Elements</div><div class="ch-marks">Group 15-18, oxoacids, structures</div></div>
+      <div class="ch-right"><div class="ch-weight">3-5</div><div class="ch-pct">marks</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px;">📌 Must Not Skip (10-12 marks)</div>
+    <div class="ch-card" style="border-left:3px solid var(--accent3);">
+      <div class="ch-left"><div class="ch-name">Biomolecules</div><div class="ch-marks">Carbohydrates, amino acids, vitamins</div></div>
+      <div class="ch-right"><div class="ch-weight">3-4</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--accent3);">
+      <div class="ch-left"><div class="ch-name">Polymers</div><div class="ch-marks">Classification, examples</div></div>
+      <div class="ch-right"><div class="ch-weight">2-3</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--accent3);">
+      <div class="ch-left"><div class="ch-name">Surface Chemistry</div><div class="ch-marks">Adsorption, colloids</div></div>
+      <div class="ch-right"><div class="ch-weight">2-3</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--accent3);">
+      <div class="ch-left"><div class="ch-name">Solid State</div><div class="ch-marks">Unit cells, defects, packing</div></div>
+      <div class="ch-right"><div class="ch-weight">2-3</div><div class="ch-pct">marks</div></div>
+    </div>
+    <div class="ch-card" style="border-left:3px solid var(--accent3);">
+      <div class="ch-left"><div class="ch-name">Chemistry in Everyday Life</div><div class="ch-marks">Drugs, food additives</div></div>
+      <div class="ch-right"><div class="ch-weight">1-2</div><div class="ch-pct">marks</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION: FORMULAS ===== -->
+<div class="section" id="formulas">
+  <div class="section-title">⚡ Key Formulas & Equations</div>
+  <div class="section-sub">Master these formulas — they appear in every paper. Tap to expand each chapter.</div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterFormula('all',this)">All</button>
+    <button class="filter-btn" onclick="filterFormula('physical',this)">Physical</button>
+    <button class="filter-btn" onclick="filterFormula('inorganic',this)">Inorganic</button>
+    <button class="filter-btn" onclick="filterFormula('organic',this)">Organic</button>
+  </div>
+
+  <div class="accordion formula-item" data-cat="physical">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>🔋 Electrochemistry</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+Nernst Equation:<br>
+E_cell = E°_cell − (RT/nF) ln Q<br>
+E_cell = E°_cell − (0.0591/n) log Q  [at 298K]<br><br>
+ΔG° = −nFE°_cell<br>
+ΔG° = −RT ln K<br><br>
+Conductivity: κ = (1/R) × (l/A) = G × G*<br>
+Molar Conductivity: Λ_m = (κ × 1000) / M<br><br>
+Kohlrausch's Law: Λ°_m = ν₊λ°₊ + ν₋λ°₋<br><br>
+Faraday's Laws:<br>
+m = (M × I × t) / (n × F)<br>
+F = 96485 C/mol ≈ 96500 C/mol
+      </div>
+      <div class="tip-box">
+        <h4>💡 Board Exam Tips</h4>
+        <p>Always write units. Show the Nernst equation derivation step by step. Draw the electrochemical cell diagram with salt bridge labeled. The 5-mark question almost always comes from here.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion formula-item" data-cat="physical">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>⏱️ Chemical Kinetics</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+Zero Order: [A] = [A]₀ − kt, t½ = [A]₀/2k<br><br>
+First Order: k = (2.303/t) log([A]₀/[A])<br>
+t½ = 0.693/k<br><br>
+Arrhenius Equation:<br>
+k = A·e^(−Ea/RT)<br>
+log(k₂/k₁) = (Ea/2.303R)(1/T₁ − 1/T₂)<br><br>
+Units of k: mol^(1-n)·L^(n-1)·s⁻¹<br>
+For first order: s⁻¹<br>
+For second order: L·mol⁻¹·s⁻¹
+      </div>
+      <div class="tip-box">
+        <h4>💡 Most Repeated</h4>
+        <p>"Show that t½ for first order is independent of initial concentration" — derivation asked almost every year. Also: "99.9% completion takes 10× the half-life" (use k = 2.303/t × log(1000))</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion formula-item" data-cat="physical">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>🧊 Solutions</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+Raoult's Law: P = x₁P°₁ + x₂P°₂<br><br>
+Colligative Properties:<br>
+ΔTb = Kb × m × i  (elevation in BP)<br>
+ΔTf = Kf × m × i  (depression in FP)<br>
+π = iCRT  (osmotic pressure)<br><br>
+(P°−P)/P° = i × x_solute<br><br>
+Van't Hoff factor: i = observed/calculated<br>
+For association: i < 1<br>
+For dissociation: i > 1<br><br>
+Molar mass from ΔTb:<br>
+M₂ = (Kb × w₂ × 1000) / (ΔTb × w₁)
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion formula-item" data-cat="physical">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>🔲 Solid State</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+Packing Efficiency:<br>
+Simple cubic: 52.4%  (Z=1)<br>
+BCC: 68%  (Z=2)<br>
+FCC/CCP: 74%  (Z=4)<br><br>
+Density: ρ = (Z × M) / (a³ × Nₐ)<br>
+where a = edge length, Z = atoms per unit cell<br><br>
+Relationship (FCC):<br>
+Face diagonal = a√2 = 4r<br>
+Body diagonal = a√3 = 4r (for BCC)
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion formula-item" data-cat="inorganic">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>💎 Coordination Compounds</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+IUPAC Naming Rules:<br>
+1. Cation first, then anion<br>
+2. Ligands alphabetical, prefixes ignored<br>
+3. Metal oxidation state in Roman numerals<br><br>
+CFSE (Crystal Field Splitting):<br>
+Octahedral: Δ₀ (t₂g lower, eg higher)<br>
+Tetrahedral: Δt ≈ 4/9 Δ₀<br><br>
+Magnetic moment: μ = √(n(n+2)) BM<br>
+where n = number of unpaired electrons<br><br>
+EAN = Z − (oxidation state) + 2×(coordination no.)
+      </div>
+      <div class="tip-box">
+        <h4>💡 Always Asked</h4>
+        <p>IUPAC naming, isomerism (geometrical + optical), hybridisation & shape using VBT, and diamagnetic/paramagnetic nature. Learn to draw d-orbital splitting diagrams.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion formula-item" data-cat="organic">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>🧪 Organic Chemistry Key Concepts</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+SN1 vs SN2:<br>
+SN1: 3° > 2° > 1° (via carbocation)<br>
+SN2: 1° > 2° > 3° (backside attack)<br><br>
+Acidity Order of Alcohols:<br>
+3° < 2° < 1° < CH₃OH < H₂O < Phenol<br><br>
+Basicity of Amines (in aq.):<br>
+2° > 1° > 3° > ArNH₂<br><br>
+Nucleophilic Addition (Aldehydes):<br>
+HCHO > CH₃CHO > (CH₃)₂CO<br>
+(decreasing reactivity)<br><br>
+Carboxylic Acid Strength:<br>
+FCH₂COOH > ClCH₂COOH > BrCH₂COOH > CH₃COOH
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion formula-item" data-cat="physical">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>🌊 Surface Chemistry</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="formula-box">
+Freundlich Adsorption Isotherm:<br>
+x/m = k·P^(1/n)  (1/n: 0 to 1)<br>
+log(x/m) = log k + (1/n)·log P<br><br>
+Colloids:<br>
+Tyndall effect, Brownian motion, Electrophoresis<br>
+Hardy-Schulze Rule: Greater the charge of<br>
+flocculating ion, greater coagulating power<br>
+Al³⁺ > Ba²⁺ > Na⁺ (for −ve sol)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION: REACTIONS ===== -->
+<div class="section" id="reactions">
+  <div class="section-title">🔬 Must-Know Name Reactions</div>
+  <div class="section-sub">These reactions are asked every year. Master them with reagents and conditions.</div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Williamson Synthesis</span><span class="tag tag-purple" style="margin-right:8px;">SN2</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="rxn-box">
+        <span class="compound">R—ONa</span> + <span class="compound">R'—X</span> <span class="arrow">→</span> <span class="compound">R—O—R'</span> + NaX<br>
+        <span class="reagent">(Sodium alkoxide + alkyl halide → Ether)</span>
+      </div>
+      <p>Used for unsymmetrical ethers. Follows SN2 mechanism. Use 1° alkyl halides to avoid elimination.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Aldol Condensation</span><span class="tag tag-gold" style="margin-right:8px;">C=O</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="rxn-box">
+        <span class="compound">2 CH₃CHO</span> <span class="arrow">→</span> <span class="compound">CH₃CH(OH)CH₂CHO</span><br>
+        <span class="reagent">(dil. NaOH, β-hydroxy aldehyde)</span><br><br>
+        On heating <span class="arrow">→</span> <span class="compound">CH₃CH=CHCHO</span> + H₂O<br>
+        <span class="reagent">(α,β-unsaturated aldehyde — Crotonaldehyde)</span>
+      </div>
+      <p>Aldehydes/ketones with α-hydrogen undergo this reaction. Cross aldol also possible between two different carbonyl compounds.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Cannizzaro Reaction</span><span class="tag tag-green" style="margin-right:8px;">Disproportionation</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="rxn-box">
+        <span class="compound">2 HCHO</span> + conc. NaOH <span class="arrow">→</span> <span class="compound">HCOONa</span> + <span class="compound">CH₃OH</span><br>
+        <span class="reagent">(Aldehydes WITHOUT α-H: HCHO, C₆H₅CHO)</span>
+      </div>
+      <p>One molecule gets oxidized (→ acid salt) and one gets reduced (→ alcohol). Only for aldehydes with NO α-hydrogen.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Sandmeyer Reaction</span><span class="tag tag-cyan" style="margin-right:8px;">Amines</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="rxn-box">
+        <span class="compound">ArN₂⁺Cl⁻</span> + CuCl/HCl <span class="arrow">→</span> <span class="compound">ArCl</span> + N₂<br>
+        <span class="compound">ArN₂⁺Cl⁻</span> + CuBr/HBr <span class="arrow">→</span> <span class="compound">ArBr</span> + N₂<br>
+        <span class="compound">ArN₂⁺Cl⁻</span> + CuCN/KCN <span class="arrow">→</span> <span class="compound">ArCN</span> + N₂
+      </div>
+      <p>Diazonium salt reactions using Cu₂X₂ catalyst. For ArI, use KI directly (no Cu needed). For ArF, use HBF₄ (Balz-Schiemann).</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Rosenmund Reduction</span><span class="tag tag-orange" style="margin-right:8px;">Acid→Aldehyde</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <div class="rxn-box">
+        <span class="compound">RCOCl</span> + H₂ <span class="arrow">→</span> <span class="compound">RCHO</span> + HCl<br>
+        <span class="reagent">(Pd/BaSO₄ catalyst, poisoned with S or quinoline)</span>
+      </div>
+      <p>Selective reduction of acid chloride to aldehyde. Catalyst is deactivated ("poisoned") so it stops at aldehyde stage. HCHO cannot be prepared by this method.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Kolbe's Reaction / Reimer-Tiemann / Hell-Volhard-Zelinsky</span><span class="tag tag-pink" style="margin-right:8px;">Important</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;"><strong style="color:var(--accent2);">Kolbe's Reaction:</strong></p>
+      <div class="rxn-box">
+        <span class="compound">C₆H₅ONa</span> + CO₂ + H₃O⁺ <span class="arrow">→</span> <span class="compound">o-HOC₆H₄COOH</span> (Salicylic acid)<br>
+        <span class="reagent">(Sodium phenoxide + CO₂, 125°C, 4-7 atm)</span>
+      </div>
+      <p style="margin: 10px 0;"><strong style="color:var(--accent2);">Reimer-Tiemann Reaction:</strong></p>
+      <div class="rxn-box">
+        <span class="compound">C₆H₅OH</span> + CHCl₃ + NaOH <span class="arrow">→</span> <span class="compound">o-HOC₆H₄CHO</span> (Salicylaldehyde)<br>
+        <span class="reagent">(Electrophilic substitution via :CCl₂ intermediate)</span>
+      </div>
+      <p style="margin: 10px 0;"><strong style="color:var(--accent2);">Hell-Volhard-Zelinsky:</strong></p>
+      <div class="rxn-box">
+        <span class="compound">RCH₂COOH</span> + Br₂/P <span class="arrow">→</span> <span class="compound">RCHBrCOOH</span><br>
+        <span class="reagent">(α-bromination of carboxylic acids)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Clemmensen / Wolff-Kishner / Stephen's</span><span class="tag tag-purple" style="margin-right:8px;">Reductions</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <p style="margin-bottom:8px;"><strong style="color:var(--accent2);">Clemmensen:</strong> C=O → CH₂ (Zn-Hg/conc. HCl) — Acidic conditions</p>
+      <p style="margin-bottom:8px;"><strong style="color:var(--accent2);">Wolff-Kishner:</strong> C=O → CH₂ (NH₂NH₂/KOH/glycol, Δ) — Basic conditions</p>
+      <p><strong style="color:var(--accent2);">Stephen's:</strong> RCN → RCHO (SnCl₂/HCl, then H₃O⁺)</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" onclick="toggleAcc(this)">
+      <span>Coupling Reaction / Gabriel / Hofmann</span><span class="tag tag-cyan" style="margin-right:8px;">Amines</span><span class="arrow">▾</span>
+    </button>
+    <div class="acc-body">
+      <p style="margin-bottom:8px;"><strong style="color:var(--accent2);">Coupling:</strong> ArN₂⁺ + C₆H₅OH (alkaline) → Azo dye (orange)</p>
+      <p style="margin-bottom:8px;"><strong style="color:var(--accent2);">Gabriel Phthalimide:</strong> Phthalimide → 1° amine only (not ArNH₂)</p>
+      <p><strong style="color:var(--accent2);">Hofmann Bromamide:</strong> RCONH₂ + Br₂/NaOH → RNH₂ (one C less)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION: PRACTICE ===== -->
+<div class="section" id="practice">
+  <div class="section-title">✏️ Practice MCQs</div>
+  <div class="section-sub">Questions from Puducherry region papers (2024-2025). Test yourself — answers appear after you pick.</div>
+
+  <div id="quizArea">
+    <!-- Q1 -->
+    <div class="quiz-q" data-answer="1">
+      <h4><span>Q1.</span> Williamson synthesis of preparing unsymmetrical ether is: <span class="tag tag-purple">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">A</div>SN1 reaction</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">B</div>SN2 reaction</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">C</div>Electrophilic addition reaction</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">D</div>Elimination reaction</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (B) SN2 reaction.</strong> Williamson synthesis involves nucleophilic substitution where alkoxide ion (strong nucleophile) attacks the primary alkyl halide via backside attack (SN2). That's why 1° halides are preferred.</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-q" data-answer="3">
+      <h4><span>Q2.</span> Which compound would be hydrolysed by aqueous KOH most easily? <span class="tag tag-purple">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,3)"><div class="circle">A</div>CH₂=CH–Br (vinyl bromide)</div>
+        <div class="q-opt" onclick="checkAnswer(this,3)"><div class="circle">B</div>CH₃–CH₂–Br (ethyl bromide)</div>
+        <div class="q-opt" onclick="checkAnswer(this,3)"><div class="circle">C</div>CH₃–CH(Br)–CH₃ (isopropyl bromide)</div>
+        <div class="q-opt" onclick="checkAnswer(this,3)"><div class="circle">D</div>CH₂=CH–CH₂–Br (allyl bromide)</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (D) Allyl bromide.</strong> Allyl halides are most reactive towards SN1 hydrolysis because allyl carbocation is stabilized by resonance. Vinyl halides are least reactive (sp² carbon, strong C-X bond).</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-q" data-answer="0">
+      <h4><span>Q3.</span> The charge required for the reduction of 1 mol MnO₄⁻ to MnO₂ is: <span class="tag tag-green">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">A</div>1 F</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">B</div>3 F</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">C</div>5 F</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">D</div>6 F</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (B) 3 F.</strong> Mn changes from +7 (in MnO₄⁻) to +4 (in MnO₂). Change = 3 electrons. Since 1 Faraday = 1 mole of electrons, we need 3F for 1 mole.</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-q" data-answer="0">
+      <h4><span>Q4.</span> The role of a catalyst is to change: <span class="tag tag-green">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">A</div>Equilibrium constant</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">B</div>Enthalpy of reaction</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">C</div>Gibbs energy of reaction</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">D</div>Activation energy of reaction</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (D) Activation energy.</strong> A catalyst provides an alternative pathway with lower activation energy. It does NOT change ΔG, ΔH, or Keq — only the rate.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-q" data-answer="2">
+      <h4><span>Q5.</span> Which molecule is chiral in nature? <span class="tag tag-green">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">A</div>1-chloropropane</div>
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">B</div>2-chloropropane</div>
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">C</div>1-chlorobutane</div>
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">D</div>2-chlorobutane</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (D) 2-chlorobutane.</strong> It has a chiral carbon: CH₃–C*H(Cl)–CH₂–CH₃ with 4 different groups attached (H, Cl, CH₃, C₂H₅).</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-q" data-answer="1">
+      <h4><span>Q6.</span> CH₃CH₂OH can be converted to CH₃CHO by: <span class="tag tag-green">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">A</div>Catalytic hydrogenation</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">B</div>Treatment with LiAlH₄</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">C</div>Treatment with PCC</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">D</div>Treatment with KMnO₄</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (C) Treatment with PCC.</strong> PCC (Pyridinium Chlorochromate) is a mild oxidizing agent that converts 1° alcohol → aldehyde without further oxidation to acid. KMnO₄ would over-oxidize to carboxylic acid. LiAlH₄ is a reducing agent.</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-q" data-answer="0">
+      <h4><span>Q7.</span> Standard electrode potential for Sn⁴⁺/Sn²⁺ = +0.15V and Cr³⁺/Cr = −0.74V. The cell potential will be: <span class="tag tag-purple">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">A</div>+0.89 V</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">B</div>+0.59 V</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">C</div>−0.89 V</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">D</div>−0.59 V</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (A) +0.89 V.</strong> E°cell = E°cathode − E°anode = 0.15 − (−0.74) = +0.89V. Cr is oxidized (anode, lower E°), Sn⁴⁺ is reduced (cathode, higher E°).</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-q" data-answer="2">
+      <h4><span>Q8.</span> In case of association, abnormal molar mass of solute will be: <span class="tag tag-purple">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">A</div>Equal to normal molar mass</div>
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">B</div>Less than normal molar mass</div>
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">C</div>Greater than normal molar mass</div>
+        <div class="q-opt" onclick="checkAnswer(this,2)"><div class="circle">D</div>Zero</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (C) Greater than normal.</strong> In association, particles combine → fewer particles → lower colligative property → calculated molar mass comes out higher than actual. Van't Hoff factor i < 1.</div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="quiz-q" data-answer="1">
+      <h4><span>Q9.</span> [Cr(H₂O)₆]Cl₂ and [Fe(H₂O)₆]Cl₂ are homoleptic complexes because: <span class="tag tag-green">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">A</div>They have same metal ion</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">B</div>All ligands attached to metal are the same</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">C</div>They have same charge</div>
+        <div class="q-opt" onclick="checkAnswer(this,1)"><div class="circle">D</div>They have same geometry</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (B) All ligands are the same.</strong> Homoleptic = same type of ligands. Heteroleptic = different ligands (e.g., [Co(NH₃)₄Cl₂]⁺).</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="quiz-q" data-answer="0">
+      <h4><span>Q10.</span> A zero-order reaction R → P has a concentration-time graph that is: <span class="tag tag-purple">2025 Paper</span></h4>
+      <div class="q-options">
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">A</div>A straight line with negative slope</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">B</div>A straight line with positive slope</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">C</div>An exponential decay curve</div>
+        <div class="q-opt" onclick="checkAnswer(this,0)"><div class="circle">D</div>A parabolic curve</div>
+      </div>
+      <div class="q-explain">✅ <strong>Answer: (A) Straight line with negative slope.</strong> For zero order: [R] = [R]₀ − kt. This is y = c − mx form, i.e., a straight line with slope = −k.</div>
+    </div>
+  </div>
+
+  <div class="score-bar" id="scoreBar">
+    <div class="score-text">Score: <span class="score-num" id="scoreNum">0/10</span></div>
+    <button class="score-btn" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+</div>
+
+<!-- ===== SECTION: PYQ ANALYSIS ===== -->
+<div class="section" id="pyq">
+  <div class="section-title">📄 PYQ Paper Analysis</div>
+  <div class="section-sub">Year-wise breakdown of Puducherry region (Outside Delhi) papers from your uploads</div>
+
+  <div class="card" style="border-left:3px solid var(--accent);">
+    <div class="card-head">
+      <div class="card-title">📝 2025 Main Exam</div>
+      <div class="tag tag-purple">56/6/1</div>
+    </div>
+    <table class="data-table">
+      <tr><th>Section</th><th>Questions</th><th>Key Topics</th></tr>
+      <tr><td>A (MCQ)</td><td>Q1–16</td><td>Williamson SN2, allyl halide reactivity, PCC oxidation, chiral molecules, Faraday's law, catalyst & Ea, cell potential, association, homoleptic complexes</td></tr>
+      <tr><td>B (2 marks)</td><td>Q17–21</td><td>Raoult's law deviation, molar conductivity vs dilution, SN1 vs SN2, amines basicity order</td></tr>
+      <tr><td>C (3 marks)</td><td>Q22–28</td><td>Nernst equation numerical, rate law & Arrhenius, d-block oxidation states, coordination IUPAC naming, conversions</td></tr>
+      <tr><td>D (Case)</td><td>Q29–30</td><td>Coordination compounds (VBT, hybridisation), Electrochemistry (E°cell, Nernst)</td></tr>
+      <tr><td>E (5 marks)</td><td>Q31–33</td><td>Electrochemistry numerical, Organic conversions, Coordination VBT + CFT</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--green);">
+    <div class="card-head">
+      <div class="card-title">📝 2024 Main Exam</div>
+      <div class="tag tag-green">56/4/1</div>
+    </div>
+    <table class="data-table">
+      <tr><th>Section</th><th>Key Topics Found</th></tr>
+      <tr><td>A</td><td>Conductivity cell, molar ionic conductivities (Kohlrausch), first order t½ derivation, Cannizzaro reaction, iodoform test</td></tr>
+      <tr><td>C</td><td>Aniline + Br₂ water, primary amine boiling points, first order kinetics derivation (99.9% completion = 10 × t½)</td></tr>
+      <tr><td>D</td><td>Coordination: ambidentate ligands, ionisation isomerism, chelate effect. Vitamins: xerophthalmia</td></tr>
+      <tr><td>E</td><td>Coordination: [CoF₆]³⁻ para/dia, [Ni(NH₃)₆]²⁺ VBT shape. Electrochemistry: E°cell, copper sulfate in zinc pot</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--gold);">
+    <div class="card-head">
+      <div class="card-title">📝 2023 Compartment</div>
+      <div class="tag tag-gold">56/C/1</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.6;">35 questions paper (new pattern with 35 Qs). Covers similar topics with emphasis on: electrochemistry, organic name reactions, coordination chemistry IUPAC, biomolecules. Same nationwide paper for compartment.</p>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--orange);">
+    <div class="card-head">
+      <div class="card-title">📝 2022 Term 2</div>
+      <div class="tag tag-orange">56/4/1</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);line-height:1.6;">12 questions, 35 marks, 2 hours. Reduced syllabus due to COVID split-term format. Short answer + long answer only. Key topics: Solutions colligative properties, electrochemistry, organic reactions, coordination.</p>
+  </div>
+
+  <div class="tip-box">
+    <h4>🔍 Repeated Patterns Across All Years</h4>
+    <ul>
+      <li><strong>Electrochemistry 5-mark Q</strong> — appears EVERY year without fail (Nernst, cell diagram, EMF calculation)</li>
+      <li><strong>Coordination 5-mark Q</strong> — IUPAC + VBT/CFT + isomerism, every year</li>
+      <li><strong>Organic conversions</strong> — 2-3 conversions with name reactions, every year</li>
+      <li><strong>Chemical Kinetics numerical</strong> — Arrhenius or integrated rate law, every year</li>
+      <li><strong>Case-based on Coordination/Electrochemistry</strong> — guaranteed 4-mark section</li>
+      <li><strong>Biomolecules/Polymers</strong> — easy 2-3 marks, direct NCERT questions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SECTION: CHECKLIST ===== -->
+<div class="section" id="checklist">
+  <div class="section-title">✅ Exam Prep Checklist</div>
+  <div class="section-sub">Track your preparation. Tap to mark completed topics. Progress is saved in this session.</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px; color:var(--green);">🏆 Physical Chemistry</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Solid State — Unit cells, packing, defects, density formula</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Solutions — Raoult's law, colligative properties, van't Hoff factor numericals</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Electrochemistry — Nernst equation, Kohlrausch, Faraday, cell diagrams</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Chemical Kinetics — Rate law, integrated equations, Arrhenius, half-life</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Surface Chemistry — Adsorption isotherm, colloids, Tyndall, coagulation</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px; color:var(--accent2);">💎 Inorganic Chemistry</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">p-Block Elements — Group 15-18, oxoacids, interhalogen, structures</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">d & f Block — Properties trends, KMnO₄, K₂Cr₂O₇, lanthanoid contraction</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Coordination Compounds — IUPAC naming, isomerism, VBT, CFT, EAN</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px; color:var(--accent3);">🧪 Organic Chemistry</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Haloalkanes & Haloarenes — SN1/SN2, elimination, optical activity</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Alcohols, Phenols, Ethers — Williamson, acidity, reactions of phenol</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Aldehydes, Ketones, Carboxylic Acids — ALL name reactions, conversions</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Amines — Basicity order, diazonium reactions, Gabriel, Hofmann</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Biomolecules — Glucose structure, amino acids, vitamins, nucleic acids</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Polymers — Classification, addition/condensation, rubber, nylon, bakelite</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Chemistry in Everyday Life — Drugs classification, food preservatives</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px; color:var(--gold);">⚡ Final Revision Must-Do</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">All 15+ Name Reactions with reagents and conditions</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">All formulas written on one sheet (formula sheet revision)</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Solve 2025 Puducherry paper (56/6/1) as mock test</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Solve 2024 Puducherry paper (56/4/1) as mock test</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Revise NCERT examples and in-text questions</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Practice 10 Nernst equation numericals</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Practice 10 Chemical Kinetics numericals</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)"></div><div class="check-text">Write all conversions (at least 20 organic conversions)</div></div>
+  </div>
+
+  <div id="progressDisplay" style="text-align:center;padding:20px;">
+    <div style="font-size:48px;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--accent2);" id="progPercent">0%</div>
+    <div style="font-size:14px;color:var(--text3);margin-top:4px;">Preparation Complete</div>
+    <div class="prog-bar" style="margin-top:12px;height:10px;">
+      <div class="prog-fill" id="progFill" style="width:0%;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+// Navigation
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  
+  if(id === 'practice') {
+    document.getElementById('scoreBar').classList.add('visible');
+  } else {
+    document.getElementById('scoreBar').classList.remove('visible');
+  }
+}
+
+// Accordion
+function toggleAcc(btn) {
+  const acc = btn.parentElement;
+  acc.classList.toggle('open');
+}
+
+// Formula filter
+function filterFormula(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.formula-item').forEach(item => {
+    if(cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// Quiz
+let score = 0;
+let answered = 0;
+const totalQ = 10;
+
+function checkAnswer(opt, correctIdx) {
+  const q = opt.closest('.quiz-q');
+  if(q.classList.contains('answered')) return;
+  q.classList.add('answered');
+  
+  const options = q.querySelectorAll('.q-opt');
+  const clickedIdx = Array.from(options).indexOf(opt);
+  const answerIdx = parseInt(q.dataset.answer);
+  
+  answered++;
+  
+  if(clickedIdx === answerIdx) {
+    opt.classList.add('correct');
+    score++;
+  } else {
+    opt.classList.add('wrong');
+    options[answerIdx].classList.add('correct');
+  }
+  
+  q.querySelector('.q-explain').classList.add('show');
+  document.getElementById('scoreNum').textContent = score + '/' + totalQ;
+  
+  if(answered >= totalQ) {
+    const pct = Math.round(score/totalQ*100);
+    let msg = pct >= 80 ? '🔥 Excellent!' : pct >= 60 ? '👍 Good job!' : '📖 Keep practicing!';
+    document.getElementById('scoreNum').textContent = score + '/' + totalQ + ' ' + msg;
+  }
+}
+
+function resetQuiz() {
+  score = 0;
+  answered = 0;
+  document.getElementById('scoreNum').textContent = '0/' + totalQ;
+  document.querySelectorAll('.quiz-q').forEach(q => {
+    q.classList.remove('answered');
+    q.querySelectorAll('.q-opt').forEach(o => o.classList.remove('selected','correct','wrong'));
+    q.querySelector('.q-explain').classList.remove('show');
+  });
+  window.scrollTo({top: document.getElementById('quizArea').offsetTop - 100, behavior: 'smooth'});
+}
+
+// Checklist
+function toggleCheck(box) {
+  box.classList.toggle('checked');
+  box.closest('.check-item').classList.toggle('done');
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.check-box').length;
+  const checked = document.querySelectorAll('.check-box.checked').length;
+  const pct = Math.round(checked/total*100);
+  document.getElementById('progPercent').textContent = pct + '%';
+  document.getElementById('progFill').style.width = pct + '%';
+  
+  if(pct >= 100) {
+    document.getElementById('progPercent').style.color = 'var(--green)';
+  } else if(pct >= 60) {
+    document.getElementById('progPercent').style.color = 'var(--gold)';
+  } else {
+    document.getElementById('progPercent').style.color = 'var(--accent2)';
+  }
+}
+
+// Animate progress bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.querySelectorAll('.prog-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width || bar.style.width;
+      });
+    }
+  });
+}, {threshold: 0.3});
+
+document.querySelectorAll('.card').forEach(card => observer.observe(card));
+</script>
+</body>
+</html>
